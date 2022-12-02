@@ -4,8 +4,8 @@ from PyQt5.QtWidgets import *
 
 class Main(QDialog):
 
-    def init(self):
-        super().init()
+    def __init__(self):
+        super().__init__()
         self.init_ui()
 
     def init_ui(self):
@@ -13,7 +13,6 @@ class Main(QDialog):
         layout_button = QGridLayout()
         layout_equation_solution = QFormLayout()
         self.equation_solution = QLineEdit('')
-        self.equation_solution.setPlaceholderText('0')
         layout_equation_solution.addRow(self.equation_solution)
 
         button_add = QPushButton("+")
@@ -86,24 +85,23 @@ class Main(QDialog):
         equation = self.equation_solution.text()
         equation += str(num)
         self.equation_solution.setText(equation)
-
     def button_operation_clicked(self, operation):
         self.num = (float(self.equation_solution.text()))
         self.operator = operation
         self.equation_solution.setText("")
 
     def button_equal_clicked(self):
-        tempr = (float(self.equation_solution.text()))
+        temp_number = (float(self.equation_solution.text()))
         if self.operator == '+':
-            equation = self.num + tempr
+            equation = self.num + temp_number
         elif self.operator == '-':
-            equation = self.num - tempr
+            equation = self.num - temp_number
         elif self.operator == '*':
-            equation = self.num * tempr
+            equation = self.num * temp_number
         elif self.operator == '/':
-            equation = self.num / tempr
+            equation = self.num / temp_number
         elif self.operator == '%':
-            equation = self.num% tempr
+            equation = self.num% temp_number
         self.equation_solution.setText(str(equation))
 
     def button_clear_clicked(self):
@@ -136,7 +134,7 @@ class Main(QDialog):
         equation = str(equation)
         self.equation_solution.setText(equation)
         
-if name == 'main':
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     main = Main()
     sys.exit(app.exec_())
