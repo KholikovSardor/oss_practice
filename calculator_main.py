@@ -1,4 +1,3 @@
-Sardor Kholikov, [12/2/2022 8:06 PM]
 import math
 import sys
 from PyQt5.QtWidgets import *
@@ -88,16 +87,24 @@ class Main(QDialog):
         equation += str(num)
         self.equation_solution.setText(equation)
 
-Sardor Kholikov, [12/2/2022 8:06 PM]
-def button_operation_clicked(self, operation):
-        equation = self.equation_solution.text()
-        equation += operation
-        self.equation_solution.setText(equation)
+    def button_operation_clicked(self, operation):
+        self.num = (float(self.equation_solution.text()))
+        self.operator = operation
+        self.equation_solution.setText("")
 
     def button_equal_clicked(self):
-        equation = self.equation_solution.text()
-        solution = eval(equation)
-        self.equation_solution.setText(str(solution))
+        tempr = (float(self.equation_solution.text()))
+        if self.operator == '+':
+            equation = self.num + tempr
+        elif self.operator == '-':
+            equation = self.num - tempr
+        elif self.operator == '*':
+            equation = self.num * tempr
+        elif self.operator == '/':
+            equation = self.num / tempr
+        elif self.operator == '%':
+            equation = self.num% tempr
+        self.equation_solution.setText(str(equation))
 
     def button_clear_clicked(self):
         self.equation_solution.setText("")
